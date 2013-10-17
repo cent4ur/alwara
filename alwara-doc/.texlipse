@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Tue Sep 24 20:31:40 CEST 2013
+markTmpDer=true
+builderNum=2
+outputDir=out
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=alwara.pdf
+langSpell=en
+markDer=true
+srcDir=src
