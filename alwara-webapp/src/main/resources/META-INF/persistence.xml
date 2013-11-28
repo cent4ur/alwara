@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+    <persistence-unit name="AlwaraPersistenceUnit" transaction-type="JTA">
+
+        <jta-data-source>jdbc/AlwaraDataSource</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="drop-and-create" />
+
+            <property name="javax.persistence.schema-generation.scripts.action"
+                      value="drop-and-create" />
+
+            <!--  Create artifacts. -->
+            <property name="javax.persistence.schema-generation.create-source"
+                      value="metadata" />
+
+            <property name="javax.persistence.schema-generation.create-script-source"
+                      value="META-INF/create.sql" />
+
+            <property name="javax.persistence.schema-generation.scripts.create-target"
+                      value="/tmp/create-generated.sql" />
+
+            <!--  Drop artifacts. -->
+            <property name="javax.persistence.schema-generation.drop-source"
+                      value="metadata" />
+
+            <property name="javax.persistence.schema-generation.drop-script-source"
+                      value="META-INF/drop.sql" />
+
+            <property name="javax.persistence.schema-generation.scripts.drop-target"
+                      value="/tmp/drop-generated.sql" />
+
+            <!-- Load data. -->
+            <property name="javax.persistence.sql-load-script-source"
+                      value="META-INF/load.sql" />
+
+            <!-- Misc. settings. -->
+            <property name="eclipselink.deploy-on-startup"
+                      value="true"/>
+
+            <property name="eclipselink.logging.exceptions"
+                      value="true" />
+
+            <property name="eclipselink.logging.level"
+                      value="INFO" />
+
+            <!--
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            -->
+        </properties>
+    </persistence-unit>
+</persistence>
