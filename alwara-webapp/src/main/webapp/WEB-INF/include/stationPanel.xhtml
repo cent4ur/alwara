@@ -9,11 +9,15 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <p:panel id="stationlistPanel"
+    <p:panel id="stationListPanel"
              header="#{bundle['Admin.StationTab.ListPanel.Header']}"
              toggleable="true">
 
-        <p:dataTable id="stationDataTable" var="station" value="#{stationBean.stations}">
+        <p:dataTable id="stationDataTable"
+                     var="station"
+                     value="#{stationBean.stations}"
+                     paginator="true"
+                     rows="10">
             <p:column headerText="#{bundle['Admin.StationTab.ListPanel.Table.NameColumn']}">
                 <h:outputText value="#{station.name}"/>
             </p:column>
@@ -59,7 +63,8 @@
             <p:commandButton id="stationSubmit"
                              value="#{bundle['Admin.StationTab.NewStationPanel.SubmitButton']}"
                              actionListener="#{stationBean.saveStation}"
-                             update="stationlistPanel,newStationPanel">
+                             update="stationListPanel,newStationPanel"
+                             process="stationDataTable stationInputText @this">
                 <p:resetInput target="stationInputText"/>
             </p:commandButton>
 
