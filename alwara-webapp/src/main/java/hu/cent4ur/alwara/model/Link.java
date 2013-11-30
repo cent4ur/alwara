@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -18,11 +20,15 @@ import javax.validation.constraints.NotNull;
  * @author Sandor Balazs
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+            name = "Link.findAll",
+            query = "SELECT l FROM Link l") })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "LINE_FK",
         "ORDINAL" }))
 public class Link extends EntityBase implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 3041916241054853666L;
 
     @NotNull
     @ManyToOne
@@ -43,10 +49,8 @@ public class Link extends EntityBase implements Serializable {
     private Station stopStation;
 
     // Bus or train line.
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "VEHICLE_TYPE_FK")
-    private VehicleType vehicleType;
+    private Boolean bus;
+    private Boolean train;
 
     // The cost of traveling the line.
     private Integer cost;
@@ -89,12 +93,20 @@ public class Link extends EntityBase implements Serializable {
         this.stopStation = stopStation;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
+    public Boolean getBus() {
+        return bus;
     }
 
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
+    public void setBus(Boolean bus) {
+        this.bus = bus;
+    }
+
+    public Boolean getTrain() {
+        return train;
+    }
+
+    public void setTrain(Boolean train) {
+        this.train = train;
     }
 
     public Integer getCost() {
