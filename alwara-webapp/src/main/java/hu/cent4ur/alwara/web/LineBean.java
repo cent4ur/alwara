@@ -3,6 +3,7 @@ package hu.cent4ur.alwara.web;
 import hu.cent4ur.alwara.model.Line;
 import hu.cent4ur.alwara.model.Link;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,8 +22,9 @@ import javax.persistence.TypedQuery;
  */
 @Named
 @SessionScoped
-public class LineBean {
+public class LineBean implements Serializable {
 
+    private static final long serialVersionUID = -422117264281622377L;
     private static final Logger logger = Logger.getLogger(LineBean.class.getName());
     private final EntityManager entityManager;
     private String lineName;
