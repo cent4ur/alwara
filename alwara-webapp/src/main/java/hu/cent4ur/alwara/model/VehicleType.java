@@ -5,6 +5,8 @@ package hu.cent4ur.alwara.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -15,6 +17,10 @@ import javax.persistence.Table;
  * @author Sandor Balazs
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+            name = "VehicleType.findByName",
+            query = "SELECT v FROM VehicleType v WHERE v.name = :name") })
 @Table(name = "VEHICLE_TYPE")
 public class VehicleType extends EntityBase {
 
