@@ -2,21 +2,17 @@
 INSERT INTO vehicle_type (id, name) VALUES (alwara_sequence.NEXTVAL, 'Train')
 INSERT INTO vehicle_type (id, name) VALUES (alwara_sequence.NEXTVAL, 'Both')
 
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Budapest', (SELECT id FROM vehicle_type WHERE name = 'Both'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Vác', (SELECT id FROM vehicle_type WHERE name = 'Both'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Balassagyarmat', (SELECT id FROM vehicle_type WHERE name = 'Both'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Salgótarján', (SELECT id FROM vehicle_type WHERE name = 'Both'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Dunakeszi', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Érsekvadkert', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Szátok', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Romhány', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Bánk', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Tereske', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-
-INSERT INTO station (id, name, vehicle_type_fk) VALUES (alwara_sequence.NEXTVAL, 'Hatvan', (SELECT id FROM vehicle_type WHERE name = 'Bus'))
-
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Budapest', 1, 1)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Vác', 1, 1)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Balassagyarmat', 1, 1)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Salgótarján', 1, 1)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Dunakeszi', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Érsekvadkert', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Szátok', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Romhány', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Bánk', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Tereske', 1, 0)
+INSERT INTO station (id, name, bus, train) VALUES (alwara_sequence.NEXTVAL, 'Hatvan', 1, 0)
 
 INSERT INTO line (id, name) VALUES (alwara_sequence.NEXTVAL, 'Bp_Bgy_St')
 INSERT INTO line (id, name) VALUES (alwara_sequence.NEXTVAL, 'Bp_Hatvan_St')
