@@ -1,0 +1,19 @@
+header {
+    background-image: url("#{resource['image:header-bg.png']}");
+    background-repeat: repeat;
+    background-position: bottom;
+    padding-bottom: 20px;
+}
+
+.errorMessage {
+    color: red;
+    margin: 8px;
+}
+
+.headerGrid {
+    width:100%;
+}
+
+.headerGrid tr td {
+    border-style: none;
+}
