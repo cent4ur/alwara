@@ -5,8 +5,8 @@ package hu.cent4ur.alwara.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,23 +15,32 @@ import javax.validation.constraints.NotNull;
  * @author Sandor Balazs
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+            name = "Station.findAll",
+            query = "SELECT s FROM Station s"),
+        @NamedQuery(
+            name = "Station.findByName",
+            query = "SELECT s FROM Station s WHERE s.name = :name") })
 public class Station extends EntityBase {
 
     @NotNull
     @Column(unique = true)
     private String name;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "VEHICLE_TYPE_FK")
-    private VehicleType vehicleType;
+    private Boolean bus = true;
+    private Boolean train = true;
 
     public Station() {
     }
 
-    public Station(String name, VehicleType vehicleType) {
+    public Station(String name) {
         this.name = name;
-        this.vehicleType = vehicleType;
+    }
+
+    public Station(String name, Boolean bus, Boolean train) {
+        this.name = name;
+        this.bus = bus;
+        this.train = train;
     }
 
     public String getName() {
@@ -42,11 +51,19 @@ public class Station extends EntityBase {
         this.name = name;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
+    public Boolean getBus() {
+        return bus;
     }
 
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
+    public void setBus(Boolean bus) {
+        this.bus = bus;
+    }
+
+    public Boolean getTrain() {
+        return train;
+    }
+
+    public void setTrain(Boolean train) {
+        this.train = train;
     }
 }
