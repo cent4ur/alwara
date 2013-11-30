@@ -27,11 +27,6 @@
                         </p:column>
                     </p:row>
                 </p:panelGrid>
-                <p:messages id="generalMessages"
-                            globalOnly="true"
-                            autoUpdate="true"
-                            closable="true"
-                            styleClass="errorMessage"/>
             </p:panel>
         </ui:define>
 
@@ -44,7 +39,7 @@
 
                 <p:tab id="lineTab"
                        title="#{bundle['Admin.LineTab.Title']}">
-<!--                     <ui:include src="/WEB-INF/include/linePanel.xhtml"/> -->
+                    <ui:include src="/WEB-INF/include/linePanel.xhtml"/>
                 </p:tab>
 
                 <p:tab id="routeTab"
