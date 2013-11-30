@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/WEB-INF/template/main.xhtml">
+        <ui:define name="header">
+            <p:panel header="#{bundle['Main.Title']}"
+                     toggleable="true">
+                <p:panelGrid styleClass="headerGrid">
+                    <p:row>
+                        <p:column>
+                            <ui:include src="/WEB-INF/include/languageSelector.xhtml"/>
+                        </p:column>
+                        <p:column styleClass="loginColumn">
+                            <h:outputLink>
+                                <h:outputText value="#{bundle['Main.Login']}"/>
+                            </h:outputLink>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:messages id="generalMessages"
+                            globalOnly="true"
+                            autoUpdate="true"
+                            closable="true"
+                            styleClass="errorMessage"/>
+            </p:panel>
+        </ui:define>
+
+        <ui:define name="content">
+            <p:tabView id="tabView">
+                <p:tab id="stationTab"
+                       title="#{bundle['Admin.StationTab.Title']}">
+                    <ui:include src="/WEB-INF/include/stationPanel.xhtml"/>
+                </p:tab>
+
+                <p:tab id="lineTab"
+                       title="#{bundle['Admin.LineTab.Title']}">
+<!--                     <ui:include src="/WEB-INF/include/linePanel.xhtml"/> -->
+                </p:tab>
+
+                <p:tab id="routeTab"
+                       title="#{bundle['Admin.RouteTab.Title']}">
+<!--                     <ui:include src="/WEB-INF/include/routePanel.xhtml"/> -->
+                </p:tab>
+
+                <p:tab id="timetableTab"
+                       title="#{bundle['Admin.TimetableTab.Title']}">
+<!--                     <ui:include src="/WEB-INF/include/timetablePanel.xhtml"/> -->
+                </p:tab>
+
+                <p:tab id="searchTab"
+                       title="#{bundle['General.SearchTab.Title']}">
+<!--                     <ui:include src="/WEB-INF/include/searchPanel.xhtml"/> -->
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+</html>
