@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <p:panel id="stationlistPanel"
+             header="#{bundle['Admin.StationTab.ListPanel.Header']}"
+             toggleable="true">
+
+        <p:dataTable id="stationDataTable" var="station" value="#{stationBean.stations}">
+            <p:column headerText="#{bundle['Admin.StationTab.ListPanel.Table.NameColumn']}">
+                <h:outputText value="#{station.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.StationTab.ListPanel.Table.BusColumn']}">
+                <h:outputText rendered="#{station.bus}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not station.bus}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.StationTab.ListPanel.Table.TrainColumn']}">
+                <h:outputText rendered="#{station.train}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not station.train}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+
+    <p:panel id="newStationPanel"
+             header="#{bundle['Admin.StationTab.NewStationPanel.Header']}"
+             toggleable="true">
+        <p:messages id="newStationMessages"/>
+        <h:panelGrid columns="3" cellpadding="5">
+
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.InputLabel']}:"
+                           for="stationInputText"/>
+            <p:inputText id="stationInputText"
+                         value="#{stationBean.stationName}"
+                         required="true"
+                         requiredMessage="#{bundle['Admin.StationTab.NewStationPanel.InputRequired']}"/>
+            <p:message for="stationInputText"/>
+
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.BusLabel']}:"/>
+            <h:selectBooleanCheckbox id="busCheckbox"
+                                     value="#{stationBean.busStation}"/>
+            <p:message for="busCheckbox"/>
+
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.TrainLabel']}:"/>
+            <h:selectBooleanCheckbox id="trainCheckbox"
+                                     value="#{stationBean.trainStation}"/>
+            <p:message for="trainCheckbox"/>
+
+            <p:commandButton id="stationSubmit"
+                             value="#{bundle['Admin.StationTab.NewStationPanel.SubmitButton']}"
+                             actionListener="#{stationBean.saveStation}"
+                             update="stationlistPanel,newStationPanel">
+                <p:resetInput target="stationInputText"/>
+            </p:commandButton>
+
+        </h:panelGrid>
+    </p:panel>
+
+</ui:composition>
