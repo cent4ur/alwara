@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:panelGrid columns="2">
+        <h:outputLabel value="#{bundle['Main.Language']}:"/>
+        <h:selectOneMenu value="#{localeBean.locale}">
+            <f:selectItems value="#{localeBean.locales}"/>
+            <f:converter converterId="localeConverter"/>
+            <f:ajax listener="#{localeBean.changeLocale}" render="form"/>
+        </h:selectOneMenu>
+    </h:panelGrid>
+
+</ui:composition>
