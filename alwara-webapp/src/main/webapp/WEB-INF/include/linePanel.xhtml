@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <p:panel id="lineListPanel"
+             header="#{bundle['Admin.LineTab.LineListPanel.Header']}"
+             toggleable="true">
+        <p:dataTable id="lineDataTable"
+                     var="line"
+                     value="#{lineBean.lineDataModel}"
+                     paginator="true"
+                     rows="5"
+                     selection="#{lineBean.selectedLine}"
+                     selectionMode="single">
+            <p:ajax event="rowSelect"
+                    listener="#{lineBean.onRowSelect}"
+                    update=":form:growl :form:tabView:lineDialog"
+                    oncomplete="PF('lineDialogWidget').show()"/>
+            <p:column headerText="#{bundle['Admin.LineTab.LineListPanel.Table.NameColumn']}">
+                <h:outputText value="#{line.name}"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+
+    <p:dialog id="lineDialog"
+              header="#{bundle['Admin.LineTab.LineDialog.Header']}:"
+              widgetVar="lineDialogWidget"
+              showEffect="fade"
+              hideEffect="explode">
+        <h:panelGrid id="lineDialogGrid" columns="2" cellpadding="5">
+            <h:outputText value="#{bundle['Admin.LineTab.LineDialog.InputLabel']}:"/>
+            <h:inputText value=""/>
+            <p:commandButton id="lineDialogSubmit"
+                             value="#{bundle['Admin.LineTab.LineDialog.SubmitButton']}"/>
+        </h:panelGrid>
+    </p:dialog>
+
+    <p:panel id="newLinePanel"
+             header="#{bundle['Admin.LineTab.NewLinePanel.Header']}"
+             toggleable="true">
+        <p:messages id="newLineMessages"/>
+        <h:panelGrid columns="3" cellpadding="5">
+
+            <h:outputLabel value="#{bundle['Admin.LineTab.NewLinePanel.InputLabel']}:"
+                           for="lineInputText"/>
+            <p:inputText id="lineInputText"
+                         value="#{lineBean.lineName}"
+                         required="true"
+                         requiredMessage="#{bundle['Admin.LineTab.NewLinePanel.InputRequired']}"/>
+            <p:message for="lineInputText"/>
+
+            <p:commandButton id="lineSubmit"
+                             value="#{bundle['Admin.LineTab.NewLinePanel.SubmitButton']}"
+                             actionListener="#{lineBean.saveLine}"
+                             update="lineListPanel,newLinePanel"
+                             process="lineDataTable lineInputText @this">
+                <p:resetInput target="lineInputText"/>
+            </p:commandButton>
+
+        </h:panelGrid>
+    </p:panel>
+
+    <p:panel id="linkListPanel"
+             header="#{bundle['Admin.LineTab.LinkListPanel.Header']}"
+             toggleable="true">
+
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel value="#{bundle['Admin.LineTab.LinkListPanel.Select']}:"/>
+            <h:selectOneMenu>
+                <f:selectItems value="#{lineBean.lines}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+        <p:dataTable id="linkDataTable"
+                     var="link"
+                     value="#{lineBean.links}"
+                     paginator="true"
+                     rows="5">
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.OrdinalColumn']}">
+                <h:outputText value="#{link.ordinal}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.StartStationColumn']}">
+                <h:outputText value="#{link.startStation.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.StopStationColumn']}">
+                <h:outputText value="#{link.stopStation.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.BusColumn']}">
+                <h:outputText rendered="#{link.bus}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not link.bus}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.TrainColumn']}">
+                <h:outputText rendered="#{link.train}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not link.train}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.CostColumn']}">
+                <h:outputText value="#{link.cost}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.LengthColumn']}">
+                <h:outputText value="#{link.length}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.TimeColumn']}">
+                <h:outputText value="#{link.time}"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+</ui:composition>
