@@ -17,3 +17,7 @@ header {
 .headerGrid tr td {
     border-style: none;
 }
+
+.loginColumn {
+    text-align: right;
+}
