@@ -6,6 +6,8 @@ package hu.cent4ur.alwara.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,6 +18,11 @@ import javax.validation.constraints.NotNull;
  * @author Sandor Balazs
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+            name = "Person.find",
+            query = "SELECT p FROM Person p WHERE p.name = :name AND p.password = :password")
+})
 public class Person extends EntityBase implements Serializable {
 
     private static final long serialVersionUID = -6715980699467154429L;
