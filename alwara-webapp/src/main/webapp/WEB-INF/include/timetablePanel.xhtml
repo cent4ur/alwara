@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <p:panel id="timetableListPanel"
+             header="#{bundle['Admin.TimetableTab.ListPanel.Header']}"
+             toggleable="true">
+
+        <p:dataTable id="timetableDataTable"
+                     var="timetable"
+                     value="#{timetableBean.timetables}">
+            <p:column headerText="#{bundle['Admin.TimetableTab.ListPanel.Table.TimeColumn']}">
+                <h:outputText value="#{timetable.formattedStartTime}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.TimetableTab.ListPanel.Table.StationColumn']}">
+                <h:outputText value="#{timetable.station.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.TimetableTab.ListPanel.Table.RouteColumn']}">
+                <h:outputText value="#{timetable.route.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.TimetableTab.ListPanel.Table.WeekendColumn']}">
+                <h:outputText rendered="#{timetable.weekend}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not timetable.weekend}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['Admin.TimetableTab.ListPanel.Table.HolidayColumn']}">
+                <h:outputText rendered="#{timetable.holiday}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not timetable.holiday}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+
+</ui:composition>
