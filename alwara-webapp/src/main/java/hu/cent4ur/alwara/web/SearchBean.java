@@ -3,10 +3,12 @@
 // BSD-style license that can be found in the LICENSE file.
 package hu.cent4ur.alwara.web;
 
+import hu.cent4ur.alwara.model.Line;
 import hu.cent4ur.alwara.model.Station;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
@@ -27,6 +29,26 @@ public class SearchBean implements Serializable {
     private Date startDate;
     private Station startStation;
     private Station endStation;
+    private OptimizationType optimizationType;
+    private OptimizationType[] optimizationTypes = OptimizationType.values();
+    private List<Line> searchResults;
+
+    public enum OptimizationType {
+        TIME("OptimizationType.Time"),
+        COST("OptimizationType.Cost"),
+        LENGTH("OptimizationType.Length");
+
+        // Key in resource bundle.
+        private String name;
+
+        OptimizationType(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
 
     public Date getStartDate() {
         return startDate;
@@ -50,6 +72,22 @@ public class SearchBean implements Serializable {
 
     public void setEndStation(Station endStation) {
         this.endStation = endStation;
+    }
+
+    public OptimizationType getOptimizationType() {
+        return optimizationType;
+    }
+
+    public void setOptimizationType(OptimizationType optimizationType) {
+        this.optimizationType = optimizationType;
+    }
+
+    public OptimizationType[] getOptimizationTypes() {
+        return optimizationTypes;
+    }
+
+    public void setOptimizationTypes(OptimizationType[] optimizationTypes) {
+        this.optimizationTypes = optimizationTypes;
     }
 
     public SearchBean() {
