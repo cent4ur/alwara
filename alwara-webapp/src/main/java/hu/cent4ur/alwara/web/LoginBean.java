@@ -3,6 +3,8 @@
 // BSD-style license that can be found in the LICENSE file.
 package hu.cent4ur.alwara.web;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -13,8 +15,9 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
 
+    private static final long serialVersionUID = 8688525412794257032L;
     private String username;
     private String password;
 
