@@ -66,4 +66,9 @@ public class Station extends EntityBase {
     public void setTrain(Boolean train) {
         this.train = train;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
