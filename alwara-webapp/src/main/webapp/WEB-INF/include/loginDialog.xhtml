@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:outputScript name="js/login-dialog.js" target="head"/>
+
+    <p:dialog id="loginDialog"
+              header="#{bundle['Main.Login']}"
+              widgetVar="loginDialogWidget"
+              resizable="false">
+
+        <h:panelGrid columns="2" cellpadding="5">
+
+            <h:outputLabel value="#{bundle['Main.Login.Username']}:" for="username"/>
+            <p:inputText id="username"
+                         value="#{loginBean.username}"
+                         required="true"
+                         label="username"/>
+
+            <h:outputLabel value="#{bundle['Main.Login.Password']}:" for="password"/>
+            <h:inputSecret id="password"
+                           value="#{loginBean.password}"
+                           required="true"
+                           label="password"/>
+
+            <f:facet name="footer">
+                <p:commandButton id="loginButton"
+                                 value="#{bundle['Main.Login']}"
+                                 update=":form:growl"
+                                 actionListener="#{loginBean.login}"
+                    oncomplete="handleLoginRequest(xhr, status, args)"/>
+            </f:facet>
+        </h:panelGrid>
+    </p:dialog>
+
+</ui:composition>
