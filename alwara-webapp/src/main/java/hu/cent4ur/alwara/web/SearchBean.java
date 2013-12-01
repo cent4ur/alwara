@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
 /**
@@ -31,8 +32,8 @@ public class SearchBean implements Serializable {
     private Station endStation;
     private OptimizationType optimizationType;
     private OptimizationType[] optimizationTypes = OptimizationType.values();
-    private Boolean resultsDisplayed;
-    private List<Line> searchResults;
+    private Boolean resultsDisplayed = true;
+    private List<Line> results;
 
     public enum OptimizationType {
         TIME("OptimizationType.Time"),
@@ -103,6 +104,16 @@ public class SearchBean implements Serializable {
         this.resultsDisplayed = resultsDisplayed;
     }
 
-    public void search() {
+    public List<Line> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Line> results) {
+        this.results = results;
+    }
+
+    public void search(ActionEvent event) {
+        logger.info("search() - Searching lines.");
+        resultsDisplayed = true;
     }
 }
