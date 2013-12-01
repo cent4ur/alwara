@@ -37,31 +37,31 @@
     </p:panel>
 
     <p:panel id="newStationPanel"
-             header="#{bundle['Admin.StationTab.NewStationPanel.Header']}"
+             header="#{bundle['Admin.StationTab.NewPanel.Header']}"
              toggleable="true">
         <p:messages id="newStationMessages"/>
         <h:panelGrid columns="3" cellpadding="5">
 
-            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.InputLabel']}:"
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewPanel.InputLabel']}:"
                            for="stationInputText"/>
             <p:inputText id="stationInputText"
                          value="#{stationBean.stationName}"
                          required="true"
-                         requiredMessage="#{bundle['Admin.StationTab.NewStationPanel.InputRequired']}"/>
+                         requiredMessage="#{bundle['Admin.StationTab.NewPanel.InputRequired']}"/>
             <p:message for="stationInputText"/>
 
-            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.BusLabel']}:"/>
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewPanel.BusLabel']}:"/>
             <h:selectBooleanCheckbox id="busCheckbox"
                                      value="#{stationBean.busStation}"/>
             <p:message for="busCheckbox"/>
 
-            <h:outputLabel value="#{bundle['Admin.StationTab.NewStationPanel.TrainLabel']}:"/>
+            <h:outputLabel value="#{bundle['Admin.StationTab.NewPanel.TrainLabel']}:"/>
             <h:selectBooleanCheckbox id="trainCheckbox"
                                      value="#{stationBean.trainStation}"/>
             <p:message for="trainCheckbox"/>
 
             <p:commandButton id="stationSubmit"
-                             value="#{bundle['Admin.StationTab.NewStationPanel.SubmitButton']}"
+                             value="#{bundle['Admin.StationTab.NewPanel.SubmitButton']}"
                              actionListener="#{stationBean.saveStation}"
                              update="stationListPanel,newStationPanel"
                              process="stationDataTable stationInputText @this">
