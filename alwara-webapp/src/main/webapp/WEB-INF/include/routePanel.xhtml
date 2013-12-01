@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <p:panel id="routeListPanel"
+             header="#{bundle['Admin.RouteTab.ListPanel.Header']}"
+             toggleable="true">
+        <p:dataTable id="routeDataTable"
+                     var="route"
+                     value="#{routeBean.routeDataModel}"
+                     paginator="true"
+                     rows="5"
+                     selection="#{routeBean.selectedRoute}"
+                     selectionMode="single">
+        <p:ajax event="rowSelect"
+                listener="#{routeBean.onRowSelect}"
+                update=":form:growl :form:tabView:routeDialog"
+                oncomplete="PF('routeDialogWidget').show()"/>
+        <p:column headerText="#{bundle['Admin.RouteTab.ListPanel.Table.NameColumn']}">
+            <h:outputText value="#{route.name}"/>
+        </p:column>
+        </p:dataTable>
+    </p:panel>
+
+    <p:dialog id="routeDialog"
+              header="#{bundle['Admin.RouteTab.Dialog.Header']}:"
+              widgetVar="routeDialogWidget"
+              showEffect="fade"
+              hideEffect="explode">
+        <h:panelGrid id="routeDialogGrid" columns="2" cellpadding="5">
+            <h:outputText value="#{bundle['Admin.RouteTab.Dialog.InputLabel']}:"/>
+            <h:inputText value=""/>
+            <p:commandButton id="routeDialogSubmit"
+                             value="#{bundle['Admin.RouteTab.Dialog.SubmitButton']}"/>
+        </h:panelGrid>
+    </p:dialog>
+
+    <p:panel id="newRoutePanel"
+             header="#{bundle['Admin.RouteTab.NewPanel.Header']}"
+             toggleable="true">
+        <p:messages id="newRouteMessages"/>
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel value="#{bundle['Admin.RouteTab.NewPanel.InputLabel']}:"
+                           for="routeInputText"/>
+            <p:inputText id="routeInputText"
+                         value="#{routeBean.routeName}"
+                         required="true"
+                         requiredMessage="#{bundle['Admin.RouteTab.NewPanel.InputRequired']}"/>
+            <p:message for="routeInputText"/>
+
+            <p:commandButton id="routeSubmit"
+                             value="#{bundle['Admin.RouteTab.NewPanel.SubmitButton']}"
+                             actionListener="#{routeBean.saveRoute}"
+                             update="routeListPanel,newRoutePanel"
+                             process="routeDataTable routeInputText @this">
+                <p:resetInput target="routeInputText"/>
+            </p:commandButton>
+        </h:panelGrid>
+    </p:panel>
+</ui:composition>
