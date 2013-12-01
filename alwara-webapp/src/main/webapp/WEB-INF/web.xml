@@ -33,7 +33,7 @@
 
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
     <session-config>
@@ -41,7 +41,17 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
+     <security-constraint>
+        <display-name>AlwaraSecurityConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>SecureConnection</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+         <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>
