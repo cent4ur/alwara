@@ -31,6 +31,7 @@ public class SearchBean implements Serializable {
     private Station endStation;
     private OptimizationType optimizationType;
     private OptimizationType[] optimizationTypes = OptimizationType.values();
+    private Boolean resultsDisplayed;
     private List<Line> searchResults;
 
     public enum OptimizationType {
@@ -39,15 +40,19 @@ public class SearchBean implements Serializable {
         LENGTH("OptimizationType.Length");
 
         // Key in resource bundle.
-        private String name;
+        private String key;
 
-        OptimizationType(String name) {
-            this.name = name;
+        OptimizationType(String key) {
+            this.key = key;
         }
 
-        public String getName() {
-            return name;
+        public String getKey() {
+            return key;
         }
+    }
+
+    public SearchBean() {
+        logger.info("SearchBean() - Initialization.");
     }
 
     public Date getStartDate() {
@@ -90,8 +95,12 @@ public class SearchBean implements Serializable {
         this.optimizationTypes = optimizationTypes;
     }
 
-    public SearchBean() {
-        logger.info("SearchBean() - Initialization.");
+    public Boolean getResultsDisplayed() {
+        return resultsDisplayed;
+    }
+
+    public void setResultsDisplayed(Boolean resultsDisplayed) {
+        this.resultsDisplayed = resultsDisplayed;
     }
 
     public void search() {
