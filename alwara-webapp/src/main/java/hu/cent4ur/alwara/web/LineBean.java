@@ -8,6 +8,7 @@ import hu.cent4ur.alwara.model.Link;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.SessionScoped;
@@ -95,7 +96,11 @@ public class LineBean implements Serializable {
     }
 
     public void onRowSelect(SelectEvent event) {
-        FacesMessage msg = new FacesMessage("Line Selected",
+        FacesContext context = FacesContext.getCurrentInstance();
+        ResourceBundle bundle = context.getApplication().getResourceBundle(
+                context, "bundle");
+        FacesMessage msg = new FacesMessage(
+                bundle.getString("Admin.LineTab.LineListPanel.Table.LineSelected"),
                 ((Line) event.getObject()).getName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
