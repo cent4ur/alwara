@@ -21,13 +21,17 @@
                             <ui:include src="/WEB-INF/include/languageSelector.xhtml"/>
                         </p:column>
                         <p:column styleClass="loginColumn">
-                            <h:outputLink>
+                            <h:outputLink id="loginLink"
+                                          value="javascript:void(0)"
+                                          onclick="PF('loginDialogWidget').show()"
+                                          title="#{bundle['Main.Login']}">
                                 <h:outputText value="#{bundle['Main.Login']}"/>
                             </h:outputLink>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
             </p:panel>
+            <ui:include src="/WEB-INF/include/loginDialog.xhtml"/>
         </ui:define>
 
         <ui:define name="content">
