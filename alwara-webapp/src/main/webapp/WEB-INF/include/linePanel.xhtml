@@ -11,107 +11,49 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <p:panel id="lineListPanel"
-             header="#{bundle['Admin.LineTab.LineListPanel.Header']}"
-             toggleable="true">
-        <p:dataTable id="lineDataTable"
-                     var="line"
-                     value="#{lineBean.lineDataModel}"
-                     paginator="true"
-                     rows="5"
-                     selection="#{lineBean.selectedLine}"
-                     selectionMode="single">
-            <p:ajax event="rowSelect"
-                    listener="#{lineBean.onRowSelect}"
-                    update=":form:growl :form:tabView:lineDialog"
-                    oncomplete="PF('lineDialogWidget').show()"/>
-            <p:column headerText="#{bundle['Admin.LineTab.LineListPanel.Table.NameColumn']}">
-                <h:outputText value="#{line.name}"/>
-            </p:column>
-        </p:dataTable>
-    </p:panel>
-
-    <p:dialog id="lineDialog"
-              header="#{bundle['Admin.LineTab.LineDialog.Header']}:"
-              widgetVar="lineDialogWidget"
-              showEffect="fade"
-              hideEffect="explode">
-        <h:panelGrid id="lineDialogGrid" columns="2" cellpadding="5">
-            <h:outputText value="#{bundle['Admin.LineTab.LineDialog.InputLabel']}:"/>
-            <h:inputText value=""/>
-            <p:commandButton id="lineDialogSubmit"
-                             value="#{bundle['Admin.LineTab.LineDialog.SubmitButton']}"/>
-        </h:panelGrid>
-    </p:dialog>
-
-    <p:panel id="newLinePanel"
-             header="#{bundle['Admin.LineTab.NewLinePanel.Header']}"
-             toggleable="true">
-        <p:messages id="newLineMessages"/>
-        <h:panelGrid columns="3" cellpadding="5">
-
-            <h:outputLabel value="#{bundle['Admin.LineTab.NewLinePanel.InputLabel']}:"
-                           for="lineInputText"/>
-            <p:inputText id="lineInputText"
-                         value="#{lineBean.lineName}"
-                         required="true"
-                         requiredMessage="#{bundle['Admin.LineTab.NewLinePanel.InputRequired']}"/>
-            <p:message for="lineInputText"/>
-
-            <p:commandButton id="lineSubmit"
-                             value="#{bundle['Admin.LineTab.NewLinePanel.SubmitButton']}"
-                             actionListener="#{lineBean.saveLine}"
-                             update="lineListPanel,newLinePanel"
-                             process="lineDataTable lineInputText @this">
-                <p:resetInput target="lineInputText"/>
-            </p:commandButton>
-
-        </h:panelGrid>
-    </p:panel>
-
-    <p:panel id="linkListPanel"
-             header="#{bundle['Admin.LineTab.LinkListPanel.Header']}"
+             header="#{bundle['Admin.LineTab.ListPanel.Header']}"
              toggleable="true">
 
         <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel value="#{bundle['Admin.LineTab.LinkListPanel.Select']}:"/>
+            <p:outputLabel value="#{bundle['Admin.LineTab.ListPanel.Select']}:"/>
             <h:selectOneMenu>
-                <f:selectItems value="#{lineBean.lines}"/>
+                <f:selectItems value="#{routeBean.routes}"/>
             </h:selectOneMenu>
         </h:panelGrid>
-        <p:dataTable id="linkDataTable"
-                     var="link"
-                     value="#{lineBean.links}"
+        <p:dataTable id="lineDataTable"
+                     var="line"
+                     value="#{lineBean.lines}"
                      paginator="true"
                      rows="5">
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.OrdinalColumn']}">
-                <h:outputText value="#{link.ordinal}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.OrdinalColumn']}">
+                <h:outputText value="#{line.ordinal}"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.StartStationColumn']}">
-                <h:outputText value="#{link.startStation.name}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.StartStationColumn']}">
+                <h:outputText value="#{line.startStation.name}"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.StopStationColumn']}">
-                <h:outputText value="#{link.stopStation.name}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.StopStationColumn']}">
+                <h:outputText value="#{line.stopStation.name}"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.BusColumn']}">
-                <h:outputText rendered="#{link.bus}"
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.BusColumn']}">
+                <h:outputText rendered="#{line.bus}"
                               styleClass="ui-icon ui-icon-circle-check"/>
-                <h:outputText rendered="#{not link.bus}"
+                <h:outputText rendered="#{not line.bus}"
                               styleClass="ui-icon ui-icon-circle-close"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.TrainColumn']}">
-                <h:outputText rendered="#{link.train}"
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.TrainColumn']}">
+                <h:outputText rendered="#{line.train}"
                               styleClass="ui-icon ui-icon-circle-check"/>
-                <h:outputText rendered="#{not link.train}"
+                <h:outputText rendered="#{not line.train}"
                               styleClass="ui-icon ui-icon-circle-close"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.CostColumn']}">
-                <h:outputText value="#{link.cost}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.CostColumn']}">
+                <h:outputText value="#{line.cost}"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.LengthColumn']}">
-                <h:outputText value="#{link.length}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.LengthColumn']}">
+                <h:outputText value="#{line.length}"/>
             </p:column>
-            <p:column headerText="#{bundle['Admin.LineTab.LinkListPanel.Table.TimeColumn']}">
-                <h:outputText value="#{link.time}"/>
+            <p:column headerText="#{bundle['Admin.LineTab.ListPanel.Table.TimeColumn']}">
+                <h:outputText value="#{line.time}"/>
             </p:column>
         </p:dataTable>
     </p:panel>
