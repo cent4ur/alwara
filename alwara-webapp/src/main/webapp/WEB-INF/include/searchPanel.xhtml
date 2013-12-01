@@ -45,7 +45,54 @@
             <p:outputLabel value=""/>
             <p:commandButton id="searchSubmit"
                              value="#{bundle['General.SearchTab.OptionsPanel.SearchButton']}"
-                             action="#{searchBean.search}"/>
+                             actionListener="#{searchBean.search}"
+                             update="searchResultsPanel"
+                             process="searchResultsPanel @this"/>
         </h:panelGrid>
+    </p:panel>
+
+    <p:panel id="searchResultsPanel"
+             header="#{bundle['General.SearchTab.ResultsPanel.Header']}"
+             toggleable="true"
+             rendered="#{searchBean.resultsDisplayed}">
+        <p:dataTable id="resultDataTable"
+                     var="result"
+                     value="#{searchBean.results}"
+                     paginator="true"
+                     rows="5">
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.RouteColumn']}">
+                <h:outputText value="#{line.route}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.OrdinalColumn']}">
+                <h:outputText value="#{line.ordinal}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.StartStationColumn']}">
+                <h:outputText value="#{line.startStation.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.StopStationColumn']}">
+                <h:outputText value="#{line.stopStation.name}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.BusColumn']}">
+                <h:outputText rendered="#{line.bus}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not line.bus}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.TrainColumn']}">
+                <h:outputText rendered="#{line.train}"
+                              styleClass="ui-icon ui-icon-circle-check"/>
+                <h:outputText rendered="#{not line.train}"
+                              styleClass="ui-icon ui-icon-circle-close"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.CostColumn']}">
+                <h:outputText value="#{line.cost}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.LengthColumn']}">
+                <h:outputText value="#{line.length}"/>
+            </p:column>
+            <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.TimeColumn']}">
+                <h:outputText value="#{line.time}"/>
+            </p:column>
+        </p:dataTable>
     </p:panel>
 </ui:composition>
