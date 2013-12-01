@@ -67,3 +67,6 @@ INSERT INTO timetable (id, start_time, station_fk, route_fk) VALUES (alwara_sequ
 INSERT INTO timetable (id, start_time, station_fk, route_fk) VALUES (alwara_sequence.NEXTVAL, 960, (SELECT id FROM station WHERE name = 'Salgótarján'), (SELECT id FROM route WHERE name = 'St_Bgy'))
 INSERT INTO timetable (id, start_time, station_fk, route_fk) VALUES (alwara_sequence.NEXTVAL, 960, (SELECT id FROM station WHERE name = 'Balassagyarmat'), (SELECT id FROM route WHERE name = 'Bgy_Év'))
 INSERT INTO timetable (id, start_time, station_fk, route_fk) VALUES (alwara_sequence.NEXTVAL, 960, (SELECT id FROM station WHERE name = 'Balassagyarmat'), (SELECT id FROM route WHERE name = 'Bgy_Bánk'))
+
+INSERT INTO person (id, name, password) VALUES (alwara_sequence.NEXTVAL, 'joe', '78675cc176081372c43abab3ea9fb70c74381eb02dc6e93fb6d44d161da6eeb3')
+INSERT INTO person (id, name, password) VALUES (alwara_sequence.NEXTVAL, 'alice', '2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90')
