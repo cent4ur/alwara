@@ -32,7 +32,7 @@ public class LineDataModel extends ListDataModel<Line> implements
         List<Line> lines = (List<Line>) getWrappedData();
 
         for (Line line : lines) {
-            if (line.getName().equals(rowKey)) {
+            if (line.getId().equals(rowKey)) {
                 return line;
             }
         }
@@ -42,6 +42,6 @@ public class LineDataModel extends ListDataModel<Line> implements
 
     @Override
     public Object getRowKey(Line line) {
-        return line.getName();
+        return line.getId();
     }
 }
