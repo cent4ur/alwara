@@ -39,7 +39,6 @@ public class SearchBean implements Serializable {
     private Integer endStationId;
     private OptimizationType optimizationType;
     private OptimizationType[] optimizationTypes = OptimizationType.values();
-    private Boolean resultsDisplayed;
     private List<Line> results;
     private final EntityManager entityManager;
 
@@ -104,14 +103,6 @@ public class SearchBean implements Serializable {
 
     public void setOptimizationTypes(OptimizationType[] optimizationTypes) {
         this.optimizationTypes = optimizationTypes;
-    }
-
-    public Boolean getResultsDisplayed() {
-        return resultsDisplayed;
-    }
-
-    public void setResultsDisplayed(Boolean resultsDisplayed) {
-        this.resultsDisplayed = resultsDisplayed;
     }
 
     public List<Line> getResults() {
@@ -180,7 +171,5 @@ public class SearchBean implements Serializable {
     	}
 
         setResults(resultLines);
-
-        resultsDisplayed = true;
     }
 }
