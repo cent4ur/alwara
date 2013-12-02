@@ -34,7 +34,9 @@ public class StationBean implements Serializable {
     private Boolean trainStation = true;
 
     StationBean() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AlwaraPersistenceUnit");
+        logger.info("StationBean() - Initialization.");
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("AlwaraPersistenceUnit");
         entityManager = emf.createEntityManager();
     }
 
