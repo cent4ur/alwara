@@ -21,17 +21,25 @@
 
             <h:outputLabel value="#{bundle['General.SearchTab.OptionsPanel.StartStationLabel']}:"
                            for="startStationMenu"/>
-            <h:selectOneMenu id="startStationMenu"
-                             value="#{searchBean.startStation}">
-                <f:selectItems value="#{stationBean.stations}"/>
-            </h:selectOneMenu>
+            <p:selectOneMenu id="startStationMenu"
+                             value="#{searchBean.startStationId}">
+                <p:ajax event="change" update="@this"/>
+                <f:selectItems value="#{stationBean.stations}"
+                               var="station"
+                               itemValue="#{station.id}"
+                               itemLabel="#{station.name}"/>
+            </p:selectOneMenu>
 
             <h:outputLabel value="#{bundle['General.SearchTab.OptionsPanel.EndStationLabel']}:"
                            for="endStationMenu"/>
-            <h:selectOneMenu id="endStationMenu"
-                             value="#{searchBean.endStation}">
-                <f:selectItems value="#{stationBean.stations}"/>
-            </h:selectOneMenu>
+            <p:selectOneMenu id="endStationMenu"
+                             value="#{searchBean.endStationId}">
+                <p:ajax event="change" update="@this"/>
+                <f:selectItems value="#{stationBean.stations}"
+                               var="station"
+                               itemValue="#{station.id}"
+                               itemLabel="#{station.name}"/>
+            </p:selectOneMenu>
 
             <h:outputLabel value="#{bundle['General.SearchTab.OptionsPanel.OptimizationLabel']}:"
                            for="optimizationMenu"/>
