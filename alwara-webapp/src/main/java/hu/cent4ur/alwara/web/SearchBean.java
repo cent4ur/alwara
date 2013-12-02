@@ -35,11 +35,11 @@ public class SearchBean implements Serializable {
     private static final long serialVersionUID = 7119305520329822712L;
     private static final Logger logger = Logger.getLogger(SearchBean.class.getName());
     private Date startDate;
-    private Station startStation;
-    private Station endStation;
+    private Integer startStationId;
+    private Integer endStationId;
     private OptimizationType optimizationType;
     private OptimizationType[] optimizationTypes = OptimizationType.values();
-    private Boolean resultsDisplayed = true;
+    private Boolean resultsDisplayed;
     private List<Line> results;
     private final EntityManager entityManager;
 
@@ -74,20 +74,20 @@ public class SearchBean implements Serializable {
         this.startDate = startDate;
     }
 
-    public Station getStartStation() {
-        return startStation;
+    public Integer getStartStationId() {
+        return startStationId;
     }
 
-    public void setStartStation(Station startStation) {
-        this.startStation = startStation;
+    public void setStartStationId(Integer startStation) {
+        this.startStationId = startStation;
     }
 
-    public Station getEndStation() {
-        return endStation;
+    public Integer getEndStationId() {
+        return endStationId;
     }
 
-    public void setEndStation(Station endStation) {
-        this.endStation = endStation;
+    public void setEndStationId(Integer endStation) {
+        this.endStationId = endStation;
     }
 
     public OptimizationType getOptimizationType() {
@@ -124,12 +124,9 @@ public class SearchBean implements Serializable {
 
     public void search(ActionEvent event) {
         logger.info("search() - Searching lines.");
-        
-        startStation = new Station("Budapest", true, true);
-        endStation = new Station("Bánk", true, true);
-        
-        logger.info(startStation.getName());
-        logger.info(endStation.getName());
+
+        logger.info("search() - Start station id: " + startStationId);
+        logger.info("search() - End station id: " + endStationId);
 
         TypedQuery<Line> query1 = entityManager.createNamedQuery("Line.findAll",Line.class);
         List<Line> lines = query1.getResultList();
@@ -143,15 +140,14 @@ public class SearchBean implements Serializable {
         for (Station station : stations) {
         	Vertex addition = new Vertex(station.getName());
         	vertices.add(addition);
-        	if (station.getName().equals(startStation.getName())) {
+            if (station.getId().equals(startStationId)) {
         		startVertex = addition;
         	}
-        	if (station.getName().equals(endStation.getName())) {
+            if (station.getId().equals(endStationId)) {
         		endVertex = addition;
         	}
         }
-        
-        
+
         for (Line line : lines) {
         	Vertex from = null, to = null;
         	for (Vertex vertex : vertices) {
@@ -165,10 +161,9 @@ public class SearchBean implements Serializable {
         		from.adjacencies.add(new Edge(to, line.getTime()));
         	}
         }
-        
-        
+
         Dijkstra.Dijkstra.computePaths(startVertex);
-        
+
         List<Line> resultLines = new ArrayList<Line>();
         List<Vertex> resultVertices = Dijkstra.Dijkstra.getShortestPathTo(endVertex);
         
@@ -183,9 +178,9 @@ public class SearchBean implements Serializable {
         		}
         	}
     	}
-        
+
         setResults(resultLines);
-        
+
         resultsDisplayed = true;
     }
 }
