@@ -61,37 +61,37 @@
                      paginator="true"
                      rows="5">
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.RouteColumn']}">
-                <h:outputText value="#{line.route}"/>
+                <h:outputText value="#{result.route}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.OrdinalColumn']}">
-                <h:outputText value="#{line.ordinal}"/>
+                <h:outputText value="#{result.ordinal}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.StartStationColumn']}">
-                <h:outputText value="#{line.startStation.name}"/>
+                <h:outputText value="#{result.startStation.name}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.StopStationColumn']}">
-                <h:outputText value="#{line.stopStation.name}"/>
+                <h:outputText value="#{result.stopStation.name}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.BusColumn']}">
-                <h:outputText rendered="#{line.bus}"
+                <h:outputText rendered="#{result.bus}"
                               styleClass="ui-icon ui-icon-circle-check"/>
-                <h:outputText rendered="#{not line.bus}"
+                <h:outputText rendered="#{not result.bus}"
                               styleClass="ui-icon ui-icon-circle-close"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.TrainColumn']}">
-                <h:outputText rendered="#{line.train}"
+                <h:outputText rendered="#{result.train}"
                               styleClass="ui-icon ui-icon-circle-check"/>
-                <h:outputText rendered="#{not line.train}"
+                <h:outputText rendered="#{not result.train}"
                               styleClass="ui-icon ui-icon-circle-close"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.CostColumn']}">
-                <h:outputText value="#{line.cost}"/>
+                <h:outputText value="#{result.cost}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.LengthColumn']}">
-                <h:outputText value="#{line.length}"/>
+                <h:outputText value="#{result.length}"/>
             </p:column>
             <p:column headerText="#{bundle['General.SearchTab.ResultsPanel.Table.TimeColumn']}">
-                <h:outputText value="#{line.time}"/>
+                <h:outputText value="#{result.time}"/>
             </p:column>
         </p:dataTable>
     </p:panel>
