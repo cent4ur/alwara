@@ -55,14 +55,16 @@
                              value="#{bundle['General.SearchTab.OptionsPanel.SearchButton']}"
                              actionListener="#{searchBean.search}"
                              update="searchResultsPanel"
-                             process="searchResultsPanel @this"/>
+                             process="searchResultsPanel @this"
+                             oncomplete="jQuery('.hidden').show();">
+            </p:commandButton>
         </h:panelGrid>
     </p:panel>
 
     <p:panel id="searchResultsPanel"
              header="#{bundle['General.SearchTab.ResultsPanel.Header']}"
              toggleable="true"
-             rendered="#{searchBean.resultsDisplayed}">
+             styleClass="hidden">
         <p:dataTable id="resultDataTable"
                      var="result"
                      value="#{searchBean.results}"
