@@ -70,7 +70,7 @@
                             <artifact>target/${project.build.finalName}.war</artifact>
                         </component>
                     </components>
-                    <contextRoot>xx</contextRoot>
+                    <contextRoot>alwara</contextRoot>
                     <debug>true</debug>
                     <terse>false</terse>
                     <echo>true</echo>
