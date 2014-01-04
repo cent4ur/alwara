@@ -25,18 +25,22 @@ public class Route extends EntityBase {
     @Column(unique = true)
     private String name;
 
-    @NotNull
-    @Column(columnDefinition = "NUMBER(10) DEFAULT 0 NOT NULL")
-    private Integer late = 0;
-
     // Bus or train route.
     private Boolean bus;
     private Boolean train;
+
+    @NotNull
+    @Column(columnDefinition = "NUMBER(10) DEFAULT 0 NOT NULL")
+    private Integer late = 0;
 
     public Route() {
     }
 
     public Route(String name) {
+        this.name = name;
+    }
+
+    public Route(String name, Boolean bus, Boolean train, Integer late) {
         this.name = name;
     }
 
@@ -46,14 +50,6 @@ public class Route extends EntityBase {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getLate() {
-        return late;
-    }
-
-    public void setLate(Integer late) {
-        this.late = late;
     }
 
     public Boolean getBus() {
@@ -70,6 +66,14 @@ public class Route extends EntityBase {
 
     public void setTrain(Boolean train) {
         this.train = train;
+    }
+
+    public Integer getLate() {
+        return late;
+    }
+
+    public void setLate(Integer late) {
+        this.late = late;
     }
 
     @Override
