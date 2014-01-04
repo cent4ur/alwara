@@ -23,7 +23,10 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
         @NamedQuery(
             name = "Line.findAll",
-            query = "SELECT l FROM Line l") })
+            query = "SELECT l FROM Line l"),
+        @NamedQuery(
+            name = "Line.findByRouteId",
+            query = "SELECT l FROM Line l WHERE l.route.id = :id") })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "ROUTE_FK",
         "ORDINAL" }))
 public class Line extends EntityBase implements Serializable {
