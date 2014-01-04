@@ -94,6 +94,7 @@ public class SearchBean implements Serializable {
     }
 
     public void setOptimizationType(OptimizationType optimizationType) {
+        logger.info("setOptimizationType() - " + optimizationType.toString());
         this.optimizationType = optimizationType;
     }
 
@@ -149,7 +150,25 @@ public class SearchBean implements Serializable {
         		}
         	}
         	if ((from != null) && (to != null)) {
-        		from.adjacencies.add(new Edge(to, line.getTime()));
+                Integer weight = 0;
+
+                if (optimizationType != null) {
+                    switch (optimizationType) {
+                    case TIME:
+                        weight = line.getTime();
+                        break;
+                    case COST:
+                        weight = line.getCost();
+                        break;
+                    case LENGTH:
+                        weight = line.getLength();
+                        break;
+                    }
+                } else {
+                    logger.severe("search() - optimizationType null");
+                }
+
+                from.adjacencies.add(new Edge(to, weight));
         	}
         }
 
