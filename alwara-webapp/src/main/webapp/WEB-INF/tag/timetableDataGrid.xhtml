@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <p:messages id="#{id}TimetableGridMessages"/>
+    <h:panelGrid id="#{id}TimetableDataGrid" columns="3" cellpadding="5">
+        <h:outputLabel value="#{bundle['TimetableDataGrid.TimeLabel']}:"
+                       for="#{id}TimeInputText"/>
+        <p:inputText id="#{id}TimeInputText"
+                     value="#{timetableBean.time}"
+                     required="true"
+                     requiredMessage="#{bundle['TimetableDataGrid.InputRequired']}"/>
+        <p:message for="#{id}TimeInputText"/>
+
+        <h:outputLabel value="#{bundle['TimetableDataGrid.StationLabel']}:"
+                       for="#{id}StationMenu"/>
+        <p:selectOneMenu id="#{id}StationMenu"
+                         value="#{timetableBean.stationId}">
+            <p:ajax event="change" update="@this"/>
+            <f:selectItems value="#{stationBean.stations}"
+                           var="station"
+                           itemValue="#{station.id}"
+                           itemLabel="#{station.name}"/>
+        </p:selectOneMenu>
+        <p:message for="#{id}StationMenu"/>
+
+        <h:outputLabel value="#{bundle['TimetableDataGrid.RouteLabel']}:"
+                       for="#{id}RouteMenu"/>
+        <p:selectOneMenu id="#{id}RouteMenu"
+                         value="#{timetableBean.routeId}">
+            <p:ajax event="change" update="@this"/>
+            <f:selectItems value="#{routeBean.routes}"
+                           var="route"
+                           itemValue="#{route.id}"
+                           itemLabel="#{route.name}"/>
+        </p:selectOneMenu>
+        <p:message for="#{id}RouteMenu"/>
+
+        <h:outputLabel value="#{bundle['TimetableDataGrid.WeekendLabel']}:"/>
+        <h:selectBooleanCheckbox id="#{id}WeekendCheckbox"
+                                 value="#{timetableBean.weekend}"
+                                 immediate="true"/>
+        <p:message for="#{id}WeekendCheckbox"/>
+
+        <h:outputLabel value="#{bundle['TimetableDataGrid.HolidayLabel']}:"/>
+        <h:selectBooleanCheckbox id="#{id}HolidayCheckbox"
+                                 value="#{timetableBean.holiday}"
+                                 immediate="true"/>
+        <p:message for="#{id}HolidayCheckbox"/>
+
+        <p:commandButton id="#{id}TimetableSubmit"
+                         value="#{submitMessage}"
+                         actionListener="#{bean[action]}"
+                         update="#{id}TimetableDataGrid timetableListPanel lineDataTable"
+                         process="#{id}TimetableDataGrid lineDataTable @this"
+                         oncomplete="PF('timetableDialogWidget').hide()">
+        </p:commandButton>
+    </h:panelGrid>
+</ui:composition>
