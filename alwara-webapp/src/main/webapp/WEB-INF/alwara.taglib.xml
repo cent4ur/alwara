@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (c) 2013, the Alwara project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+-->
+<facelet-taglib
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+    version="2.0">
+
+    <namespace>http://alwara.cent4ur.hu</namespace>
+
+    <tag>
+        <tag-name>stationDataGrid</tag-name>
+        <source>tag/stationDataGrid.xhtml</source>
+        <attribute>
+            <description>Component identifier.</description>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <description>Displayed message on the submit button.</description>
+            <name>submitMessage</name>
+        </attribute>
+        <attribute>
+            <description>The bean used for method calls.</description>
+            <name>bean</name>
+        </attribute>
+        <attribute>
+            <description>Registering an ActionListener on the submit button.</description>
+            <name>action</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>lineDataGrid</tag-name>
+        <source>tag/lineDataGrid.xhtml</source>
+        <attribute>
+            <description>Component identifier.</description>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <description>Displayed message on the submit button.</description>
+            <name>submitMessage</name>
+        </attribute>
+        <attribute>
+            <description>The bean used for method calls.</description>
+            <name>bean</name>
+        </attribute>
+        <attribute>
+            <description>Registering an ActionListener on the submit button.</description>
+            <name>action</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>routeDataGrid</tag-name>
+        <source>tag/routeDataGrid.xhtml</source>
+        <attribute>
+            <description>Component identifier.</description>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <description>Displayed message on the submit button.</description>
+            <name>submitMessage</name>
+        </attribute>
+        <attribute>
+            <description>The bean used for method calls.</description>
+            <name>bean</name>
+        </attribute>
+        <attribute>
+            <description>Registering an ActionListener on the submit button.</description>
+            <name>action</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>timetableDataGrid</tag-name>
+        <source>tag/timetableDataGrid.xhtml</source>
+        <attribute>
+            <description>Component identifier.</description>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <description>Displayed message on the submit button.</description>
+            <name>submitMessage</name>
+        </attribute>
+        <attribute>
+            <description>The bean used for method calls.</description>
+            <name>bean</name>
+        </attribute>
+        <attribute>
+            <description>Registering an ActionListener on the submit button.</description>
+            <name>action</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <tag-name>booleanValue</tag-name>
+        <source>tag/booleanValue.xhtml</source>
+        <attribute>
+            <description>Component identifier.</description>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <description>The boolean value that should be rendered.</description>
+            <name>value</name>
+        </attribute>
+    </tag>
+</facelet-taglib>
